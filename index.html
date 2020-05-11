@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://haomega.github.io/" />
-<meta property="og:updated_time" content="2020-05-11T11:08:27+08:00" />
+<meta property="og:updated_time" content="2020-05-11T17:30:59+08:00" />
 <meta itemprop="name" content="Haomega的博客">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Haomega的博客"/>
@@ -113,6 +113,35 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/" class="color-inherit dim link">
+            Java的包管理与Maven
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          Java程序如何执行？ 在Jvm中，它只做很简单的一件事，找到这个类并执行它，如果类中引用了其他的类，则继续找到引用的这个类，继续执行。
+Jvm如何找到类？ 在Jvm中，所有的类使用全限定类名，Jvm也是根据全限定类名找到这个类； 查询机制：与熟悉的Path环境变量相同，Jvm从classpath按照Path的顺序依次查找。
+当我们引入第三方包时，需要怎么做？ 首先你需要有源文件（jar文件)，然后告诉Jvm去哪里可以找到它，也就是指定classpath。
+Maven做了什么？ 在管理依赖的方面，Maven就是从它的仓库中通过你定义的坐标
+ &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; 找到并下载该jar。
+包冲突 根据Jvm执行的机制可以知道，包冲突就是在classpath中存在全限定类名相同的类，我们想要使用的jar包的path排在了不想要的后面，导致了错误的引用。 解决方法也是围绕着能够让Jvm能够正确读取我们想要的类为前提来进行。
+        </div>
+          <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             

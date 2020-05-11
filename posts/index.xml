@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Haomega的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Mon, 11 May 2020 11:08:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2020 17:30:59 +0800</lastBuildDate>
     
 	<atom:link href="http://haomega.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java的包管理与Maven</title>
+      <link>http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/</link>
+      <pubDate>Mon, 11 May 2020 17:30:59 +0800</pubDate>
+      
+      <guid>http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/</guid>
+      <description>Java程序如何执行？ 在Jvm中，它只做很简单的一件事，找到这个类并执行它，如果类中引用了其他的类，则继续找到引用的这个类，继续执行。
+Jvm如何找到类？ 在Jvm中，所有的类使用全限定类名，Jvm也是根据全限定类名找到这个类； 查询机制：与熟悉的Path环境变量相同，Jvm从classpath按照Path的顺序依次查找。
+当我们引入第三方包时，需要怎么做？ 首先你需要有源文件（jar文件)，然后告诉Jvm去哪里可以找到它，也就是指定classpath。
+Maven做了什么？ 在管理依赖的方面，Maven就是从它的仓库中通过你定义的坐标
+ &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt; 找到并下载该jar。
+包冲突 根据Jvm执行的机制可以知道，包冲突就是在classpath中存在全限定类名相同的类，我们想要使用的jar包的path排在了不想要的后面，导致了错误的引用。 解决方法也是围绕着能够让Jvm能够正确读取我们想要的类为前提来进行。</description>
+    </item>
     
     <item>
       <title>Hugo and GithubPages 博客搭建</title>
