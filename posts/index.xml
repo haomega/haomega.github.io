@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Haomega的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Fri, 08 May 2020 23:03:02 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2020 11:08:27 +0800</lastBuildDate>
     
 	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo and GithubPages 博客搭建</title>
+      <link>http://example.org/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Mon, 11 May 2020 11:08:27 +0800</pubDate>
+      
+      <guid>http://example.org/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <description>Hugo Go语言实现的博客生成器
+ The world&amp;rsquo;s fastest framework for building websites.
+ 在使用Hugo之前，我使用过hexo，Hugo和其相比，速度是快了不少。当然速度并不是那么重要。
+Github Pages 提供了类似静态文件服务的功能，你不必去购买服务器和域名了。
+搭建步骤  安装Hugo，下载地址,请下载对应系统版本； 配置Hugo环境变量，终端中执行hugo version 出现版本详情，表示环境变量配置成功； 博客初始化、安装主题、创建post，请查看官网 配置GithubPages  在Gihub上创建 username.github.io的仓库； 执行hugo -D 将会在/public生成静态博客的内容； 我们将/public内容添加remote到第一步的远程仓库，并推送到master； 在仓库的配置页面打开GithubPages；   博客源文件的备份当然，我们也会考虑到，你使用Hugo生成博客的目录可能会丢失， 所以，对当前目录做个备份吧，不仅能备份配置，也能备份生成文章的md源文件。 我的做法是将根目录推送到username.github.io仓库的hugo-source分支，与master分支互不影响。  </description>
+    </item>
     
     <item>
       <title>开博大吉</title>
