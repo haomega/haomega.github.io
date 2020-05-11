@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Haomega的博客</title>
-    <link>http://example.org/</link>
+    <link>http://haomega.github.io/</link>
     <description>Recent content on Haomega的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
     <lastBuildDate>Mon, 11 May 2020 11:08:27 +0800</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://haomega.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hugo and GithubPages 博客搭建</title>
-      <link>http://example.org/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <link>http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 11 May 2020 11:08:27 +0800</pubDate>
       
-      <guid>http://example.org/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <guid>http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
       <description>Hugo Go语言实现的博客生成器
  The world&amp;rsquo;s fastest framework for building websites.
  在使用Hugo之前，我使用过hexo，Hugo和其相比，速度是快了不少。当然速度并不是那么重要。
@@ -26,10 +26,10 @@ Github Pages 提供了类似静态文件服务的功能，你不必去购买服�
     
     <item>
       <title>开博大吉</title>
-      <link>http://example.org/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/</link>
+      <link>http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/</link>
       <pubDate>Fri, 08 May 2020 23:03:02 +0800</pubDate>
       
-      <guid>http://example.org/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/</guid>
+      <guid>http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/</guid>
       <description>Hello world. </description>
     </item>
     
