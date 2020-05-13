@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://haomega.github.io/" />
-<meta property="og:updated_time" content="2020-05-11T17:30:59+08:00" />
+<meta property="og:updated_time" content="2020-05-12T17:55:28+08:00" />
 <meta itemprop="name" content="Haomega的博客">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Haomega的博客"/>
@@ -122,6 +122,39 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/" class="color-inherit dim link">
+            Collection 体系和常用类
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          Collection体系 Collection：是一组数据的集合
+ Set 集 （不包含重复、无序） List 列表 （包含重复、有序) Quene 队列 （先进后出）  Collection接口 定义了基本的集合方法
+ add/addAll	添加一个到集合中 remove/removeAll/removeIf	从集合中移除元素 contains/containsAll	判断集合是否包含 size	集合大小 clear	清空集合 retainAll	交集  Set 完全是Collection的实现，没有新增什么方法。
+List 增加了基于Index操作的相关方法：
+ get(i)/set(i)/remove 根据下标获取/设置/删除 indexOf/lastIndexOf  Quene 增加了队列的相关操作：
+ poll/remove 删除头部的一个元素 peek 偷看  常用类 从Collection体系图中可以看出：
+ Set：HashSet List：ArrayList Quene：  HashSet 内部维护了一个HashMap，基本上都是在间接操作里面的HashMap
+ArrayList 日常用到的最多，如果没有特殊的需求，一般都会用它。 特点是内部维护了数组，查找快、增删慢（如果删除中间的元素，后面的元素还要依次进一） 内部数据结构： Object数组
+Map体系 键值对映射，不属于Collection Map接口 定义了键值对操作的方法，内部还包含了Entry接口
+ put/putAll 新增键值对 remove 删除 get	根据key获取value containsKey/containsValue 判断包含 clear	清空 keySet/values/entrySet	返回Map的key视图/value视图/entry视图 replace 替换  注意: Map视图是map内的真实映射，对视图操作就是对map操作
+        </div>
+          <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/" class="color-inherit dim link">
             Java的包管理与Maven
             </a>
@@ -171,32 +204,25 @@ Github Pages 提供了类似静态文件服务的功能，你不必去购买服�
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="color-inherit dim link">
-            开博大吉
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          Hello world. 
-        </div>
-          <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
+      
+      <section class="w-100">
+        <h1 class="f3">More</h1>
+        
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="link black dim">
+              开博大吉
+            </a>
+          </h2>
+        
+
+        
+        
+          <a href="http://haomega.github.io/posts/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Posts</a>
+        
+        </section>
       
 
       </div>
