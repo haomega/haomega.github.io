@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Haomega的博客</title>
+    <title>Posts on 阿豪</title>
     <link>http://haomega.github.io/posts/</link>
-    <description>Recent content in Posts on Haomega的博客</description>
+    <description>Recent content in Posts on 阿豪</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Tue, 12 May 2020 17:55:28 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2020 23:29:39 +0800</lastBuildDate>
     
 	<atom:link href="http://haomega.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Java Thread 线程简单概要</title>
+      <link>http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/</link>
+      <pubDate>Thu, 28 May 2020 23:29:39 +0800</pubDate>
+      
+      <guid>http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/</guid>
+      <description>Java中的线程模型 Java是以同步/阻塞的方式运行的，他会一行一行执行。
+开启一个线程的时候，会增加一个独立的栈： Jvm的栈空间中除了Main的栈之外会增加一个与之互相没有关联的栈。
+开启线程的方法 new Thread().start()
+ 使用Runnable接口,实现接口后传入Thread；  	new Thread(() -&amp;gt; { System.out.println(&amp;quot; MyThread is:&amp;quot; + Thread.currentThread().getName()); }).start();  继承Thread类，实现方法，然后通过调用start开启线程；  static class MyThread extends Thread { @Override public void run() { System.out.println(&amp;quot; MyThread is:&amp;quot; + this.getName()); } } 线程中共享哪些资源 新的线程执行的内容会在一个新的栈中运行，则只属于栈的局部变量是不可共享的，反之其他的都是共享的，比如堆中的对象。
+其实除了局部变量外共享所有资源（对象、静态常量、静态方法·····等等除了局部变量外）。</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Java Exception简要概述</title>
+      <link>http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Thu, 28 May 2020 13:55:18 +0800</pubDate>
+      
+      <guid>http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/</guid>
+      <description>概要 程序并不是每次都能按照理想情况运行，总是有着不可预测的异常情况发生。
+作用  正确处理异常可以使程序更健壮； 异常给方法提供了除了return之外的额外的返回途径；  Java中的异常结构 Java中的异常大致分为两类：Exception和Error，他们都继承自Throwable，意思是可抛出的异常;
+Exception:(checked) 往往可以通过正确处理来避免；例如NullPointorException * runtimeException：运行时异常（unchecked） Error：（unchecked） 程序无能为力的异常；例如NoSuchClassError、OutOfmemoryError
+异常的处理 有两种方式来处理异常
+ 抛出 捕获  当你的的程序在某些情况不能正确执行：你可以抛出一个异常来警告调用者，或者捕获异常并处理。 当你的程序调用一个抛出异常的接口时： * 继续抛出这个异常 * 捕获并处理它（切记不可捕获了异常时不做任何处理） * 捕获它，doSomething并继续抛出此异常或另一个异常
+异常处理原则  能用if/else或者其他能处理的，不要用异常 尽早抛出异常 带出重要信息 一旦捕获异常除非特别的，必须进行处理或者重新抛出。 ····  其他 不捕获，一直抛出会发生什么？ 异常会击穿方法，直到被捕获，如果一直到最外层都没有捕获，则会杀掉当前线程。
+catch/finally里的return finally一定会被执行，所以最终return的是finally块里的，另：不要再catch里return，这是不好的做法。
+日志里的caused by是什么？ 出现caused by是异常被捕获后，重新由新的异常包裹（throw new XXXException(&amp;ldquo;some things&amp;rdquo;, e)）并抛出。</description>
+    </item>
+    
     
     
     <item>
@@ -29,6 +63,8 @@ Map体系 键值对映射，不属于Collection Map接口 定义了键值对操�
  put/putAll 新增键值对 remove 删除 get	根据key获取value containsKey/containsValue 判断包含 clear	清空 keySet/values/entrySet	返回Map的key视图/value视图/entry视图 replace 替换  注意: Map视图是map内的真实映射，对视图操作就是对map操作</description>
     </item>
     
+    
+    
     <item>
       <title>Java的包管理与Maven</title>
       <link>http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/</link>
@@ -43,6 +79,8 @@ Maven做了什么？ 在管理依赖的方面，Maven就是从它的仓库中通
 包冲突 根据Jvm执行的机制可以知道，包冲突就是在classpath中存在全限定类名相同的类，我们想要使用的jar包的path排在了不想要的后面，导致了错误的引用。 解决方法也是围绕着能够让Jvm能够正确读取我们想要的类为前提来进行。</description>
     </item>
     
+    
+    
     <item>
       <title>Hugo and GithubPages 博客搭建</title>
       <link>http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
@@ -56,6 +94,8 @@ Github Pages 提供了类似静态文件服务的功能，你不必去购买服�
 搭建步骤  安装Hugo，下载地址,请下载对应系统版本； 配置Hugo环境变量，终端中执行hugo version 出现版本详情，表示环境变量配置成功； 博客初始化、安装主题、创建post，请查看官网 配置GithubPages  在Gihub上创建 username.github.io的仓库； 执行hugo -D 将会在/public生成静态博客的内容； 我们将/public内容添加remote到第一步的远程仓库，并推送到master； 在仓库的配置页面打开GithubPages；   博客源文件的备份当然，我们也会考虑到，你使用Hugo生成博客的目录可能会丢失， 所以，对当前目录做个备份吧，不仅能备份配置，也能备份生成文章的md源文件。 我的做法是将根目录推送到username.github.io仓库的hugo-source分支，与master分支互不影响。  </description>
     </item>
     
+    
+    
     <item>
       <title>开博大吉</title>
       <link>http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/</link>
@@ -64,6 +104,7 @@ Github Pages 提供了类似静态文件服务的功能，你不必去购买服�
       <guid>http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/</guid>
       <description>Hello world. </description>
     </item>
+    
     
   </channel>
 </rss>

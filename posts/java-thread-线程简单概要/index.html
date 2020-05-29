@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/posts/index.xml" title="阿豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -267,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>Posts</title>
+    <title>Java Thread 线程简单概要</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">阿豪</a></h2>
@@ -278,40 +277,34 @@ main#content pre {
         </ul>
     </nav>
 </header>
-<main id="content"><h3>Posts</h3>
-<ul id="posts">
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Java Thread 线程简单概要</h1><time>May 28, 2020</time></header><h1 id="java中的线程模型">Java中的线程模型</h1>
+<p>Java是以<strong>同步/阻塞</strong>的方式运行的，他会一行一行执行。</p>
+<p>开启一个线程的时候，会增加一个独立的栈：
+Jvm的栈空间中除了Main的栈之外会增加一个与之<strong>互相没有关联的栈</strong>。</p>
+<h2 id="开启线程的方法">开启线程的方法</h2>
+<p><code>new Thread().start()</code></p>
+<ul>
+<li>使用Runnable接口,实现接口后传入Thread；</li>
 </ul>
+<pre><code>	new Thread(() -&gt; {
+            System.out.println(&quot; MyThread is:&quot; + Thread.currentThread().getName());
+        }).start();
+</code></pre><ul>
+<li>继承Thread类，实现方法，然后通过调用start开启线程；</li>
+</ul>
+<pre><code>static class MyThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println(&quot; MyThread is:&quot; + this.getName());
+        }
+    }
+</code></pre><h2 id="线程中共享哪些资源">线程中共享哪些资源</h2>
+<p>新的线程执行的内容会在一个<strong>新的栈</strong>中运行，则只属于栈的局部变量是不可共享的，反之其他的都是共享的，比如堆中的对象。</p>
+<p>其实除了局部变量外共享所有资源（对象、静态常量、静态方法·····等等除了局部变量外）。</p>
+</article>
 
         </main><footer id="footer">
     

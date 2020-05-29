@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/posts/index.xml" title="阿豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -267,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>Posts</title>
+    <title>Java Exception简要概述</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">阿豪</a></h2>
@@ -278,40 +277,48 @@ main#content pre {
         </ul>
     </nav>
 </header>
-<main id="content"><h3>Posts</h3>
-<ul id="posts">
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Java Exception简要概述</h1><time>May 28, 2020</time></header><h1 id="概要">概要</h1>
+<p>程序并不是每次都能按照理想情况运行，总是有着不可预测的异常情况发生。</p>
+<h2 id="作用">作用</h2>
+<ul>
+<li>正确处理异常可以使程序更健壮；</li>
+<li>异常给方法提供了除了return之外的额外的返回途径；</li>
 </ul>
+<h2 id="java中的异常结构">Java中的异常结构</h2>
+<p>Java中的异常大致分为两类：<code>Exception</code>和<code>Error</code>，他们都继承自<code>Throwable</code>，意思是可抛出的异常;</p>
+<p>Exception:(checked) 往往可以通过正确处理来避免；例如NullPointorException
+* runtimeException：运行时异常（unchecked）
+Error：（unchecked） 程序无能为力的异常；例如NoSuchClassError、OutOfmemoryError</p>
+<h1 id="异常的处理">异常的处理</h1>
+<p>有两种方式来处理异常</p>
+<ul>
+<li>抛出</li>
+<li>捕获</li>
+</ul>
+<p>当你的的程序在某些情况不能正确执行：你可以抛出一个异常来警告调用者，或者捕获异常并处理。
+当你的程序调用一个抛出异常的接口时：
+* 继续抛出这个异常
+* 捕获并处理它（切记不可捕获了异常时不做任何处理）
+* 捕获它，doSomething并继续抛出此异常或另一个异常</p>
+<h2 id="异常处理原则">异常处理原则</h2>
+<ul>
+<li>能用if/else或者其他能处理的，不要用异常</li>
+<li>尽早抛出异常</li>
+<li>带出重要信息</li>
+<li>一旦捕获异常除非特别的，必须进行处理或者重新抛出。
+····</li>
+</ul>
+<h1 id="其他">其他</h1>
+<h3 id="不捕获一直抛出会发生什么">不捕获，一直抛出会发生什么？</h3>
+<p>异常会击穿方法，直到被捕获，如果一直到最外层都没有捕获，则会杀掉当前线程。</p>
+<h3 id="catchfinally里的return">catch/finally里的return</h3>
+<p>finally一定会被执行，所以最终return的是finally块里的，另：不要再catch里return，这是不好的做法。</p>
+<h3 id="日志里的caused-by是什么">日志里的caused by是什么？</h3>
+<p>出现caused by是异常被捕获后，重新由新的异常包裹（throw new XXXException(&ldquo;some things&rdquo;, e)）并抛出。</p>
+</article>
 
         </main><footer id="footer">
     
