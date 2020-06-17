@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/categories/index.xml" title="阿豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -267,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>Categories</title>
+    <title>Collection体系常用类的数据结构</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">阿豪</a></h2>
@@ -278,50 +277,70 @@ main#content pre {
         </ul>
     </nav>
 </header>
-<main id="content"><h3>Posts</h3>
-<ul id="posts">
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">Collection体系常用类的数据结构<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/arraylist%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B8%8E%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">ArrayList源码阅读与扩容机制<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Collection体系常用类的数据结构</h1><time>June 17, 2020</time></header><h2 id="collection体系常用类">Collection体系常用类</h2>
+<h3 id="set接口常用类">Set接口常用类</h3>
+<ul>
+<li>HashSet</li>
+<li>LinkedHashSet</li>
+<li>TreeSet</li>
 </ul>
+<h3 id="list接口常用类">List接口常用类</h3>
+<ul>
+<li>ArrayList</li>
+<li>LinkedList</li>
+<li>Stack</li>
+<li>Vector（提供了一些线程安全的方法）</li>
+</ul>
+<h3 id="map接口常用类">Map接口常用类</h3>
+<ul>
+<li>HashMap</li>
+<li>HashTable</li>
+<li>LinkedHashMap</li>
+<li>TreeMap</li>
+</ul>
+<h2 id="set常用类数据结构">Set常用类数据结构</h2>
+<p>HashSet 内部维护了一个HashMap<code>private transient HashMap&lt;E,Object&gt; map;</code>，所有方法都是靠HashMap来完成。</p>
+<p>LinkedHashMap 继承了HashSet，唯一与之不同的是内部维护的是LinkedHashMap而不是HashMap：</p>
+<pre><code>/**
+     * Constructs a new, empty linked hash set.  (This package private
+     * constructor is only used by LinkedHashSet.)...
+**/
+HashSet(int initialCapacity, float loadFactor, boolean dummy) {
+        map = new LinkedHashMap&lt;&gt;(initialCapacity, loadFactor);
+    }
+</code></pre><p>TreeSet内部也是维护了一个NavigableMap（TreeMap）。
+详情请看Map。</p>
+<h2 id="list常用类数据结构">List常用类数据结构</h2>
+<p>ArrayList内部维护了一个Object数组<code>transient Object[] elementData</code>;</p>
+<p>LinkedList是链表结构，内部构造了含有前后指针的Node;</p>
+<p>Stack extend Vector，所以内部也是一个Object数组，通过数组实现栈（先进后出），每次出栈最后一个数组元素。</p>
+<h2 id="map常用类数据结构">Map常用类数据结构</h2>
+<p>HashMap/HashTable</p>
+<blockquote>
+<p>HashMap 大致相当于HashTable，除了HashMap不是线程安全的，并且允许null作为Key或Value;</p>
+</blockquote>
+<p>HashMap的数据结构是Hash桶（数组加链表）<code>transient Node&lt;K,V&gt;[] table</code>;</p>
+<p>put逻辑：计算key的hash，根据hash通过取模（%）<code>(n - 1) &amp; hash</code>计算桶位置，判空，非空的话遍历链表，如果key相等会替换原来的值，没有相同的就加到链表后。</p>
+<p>LinkedHashMap extend HashMap，与之不通的是，它维护了一个双向链表（重新实现了桶，使之包含前后两个指向）</p>
+<pre><code>/**
+     * HashMap.Node subclass for normal LinkedHashMap entries.
+     */
+    static class Entry&lt;K,V&gt; extends HashMap.Node&lt;K,V&gt; {
+        Entry&lt;K,V&gt; before, after;
+        Entry(int hash, K key, V value, Node&lt;K,V&gt; next) {
+            super(hash, key, value, next);
+        }
+    }
+</code></pre><p>TreeMap是红黑树的实现，具体可看<a href="https://juejin.im/post/5be529a5f265da615704fd45">这里</a>
+‭</p>
+<h2 id="总结">总结:</h2>
+<p>Set的实现基本靠内部维护的HashMap类；</p>
+<p>List有数组和链表实现，数组可以根据下标快速获取元素，删除慢；链表删除快，随机读写会比较慢，因为每次获取元素都要从第一个元素开始找。</p>
+<p>HashMap的实现比较复杂，数据结构是数组加链表，虽然有链表实现，但是数据结构也是相同的，只不过桶的数据结构变成了具有双向链表的结构，也由于根据计算hash来确定元素存放位置，使得查找非常快。</p>
+</article>
 
         </main><footer id="footer">
     
