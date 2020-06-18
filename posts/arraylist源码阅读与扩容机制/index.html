@@ -280,7 +280,47 @@ main#content pre {
 <main id="content">
 <article>
     <header id="post-header">
-        <h1>ArrayList源码阅读与扩容机制</h1><time>June 17, 2020</time></header></article>
+        <h1>ArrayList源码阅读与扩容机制</h1><time>June 17, 2020</time></header><h2 id="arraylist继承体系">ArrayList继承体系</h2>
+<pre><code class="language-public" data-lang="public">        implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable
+</code></pre><p>你会发现既然ArrayList继承了AbstractList（它<code>implement List</code>接口），为啥后面还加了个<code>implement List&lt;E&gt;</code>，网上给出的解释是：</p>
+<blockquote>
+<p><code>implement List&lt;E&gt;</code> 是可以省略的，只是为了直观显示ArrayList实现了List接口，因为AbstractList只是为了减少实现List接口的代码。</p>
+</blockquote>
+<p>RandomAccess、Cloneable、Serializable，可随机读写、可克隆、可序列化。</p>
+<h2 id="field">Field</h2>
+<p><code>private static final int DEFAULT_CAPACITY = 10</code>默认容量10</p>
+<p><code>private static final Object[] EMPTY_ELEMENTDATA = {}</code> 共享的空数组</p>
+<p><code> private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}</code> 共享的空数组</p>
+<p><code>transient Object[] elementData</code> ArrayList元素存放的数据结构-数组</p>
+<p>你会注意到EMPTY_ELEMENTDATA和DEFAULTCAPACITY_EMPTY_ELEMENTDATA只是两个名字不通的空数组，为啥会需要两个呢？</p>
+<p>观察构造器<code>public ArrayList(int initialCapacity)</code>指定容量为0的话，ArrayList会使用EMPTY_ELEMENTDATA，</p>
+<p>而无参构造器则会使用DEFAULTCAPACITY_EMPTY_ELEMENTDATA</p>
+<p>这两个有什么不通呢？答案是容量增长方式不一样</p>
+<pre><code>private static int calculateCapacity(Object[] elementData, int minCapacity) {
+        if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+            return Math.max(DEFAULT_CAPACITY, minCapacity);
+        }
+        return minCapacity;
+}
+</code></pre><p>可以看到第二个默认容量是10，而第一个是0，表现为：</p>
+<p>EMPTY_ELEMENTDATA：0-1-2-3-4-6-9······
+DEFAULTCAPACITY_EMPTY_ELEMENTDATA：0-10-15-22-33······</p>
+<h2 id="方法与实现">方法与实现</h2>
+<p>除了AbstractList帮忙实现的外，ArrayList实现了List的其他接口。</p>
+<h2 id="扩容机制">扩容机制</h2>
+<pre><code>private void grow(int minCapacity) {
+        // overflow-conscious code
+        int oldCapacity = elementData.length;
+        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
+        if (newCapacity - minCapacity &lt; 0)
+            newCapacity = minCapacity;
+        if (newCapacity - MAX_ARRAY_SIZE &gt; 0)
+            newCapacity = hugeCapacity(minCapacity);
+        // minCapacity is usually close to size, so this is a win:
+        elementData = Arrays.copyOf(elementData, newCapacity);
+    }
+</code></pre><p>新生成一个原来<strong>1.5</strong>倍容量的数组，然后将old数组拷贝到新数组。</p>
+</article>
 
         </main><footer id="footer">
     

@@ -33,7 +33,18 @@ Stack extend Vector，所以内部也是一个Object数组，通过数组实现�
       <pubDate>Wed, 17 Jun 2020 14:53:38 +0800</pubDate>
       
       <guid>http://haomega.github.io/posts/arraylist%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B8%8E%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</guid>
-      <description></description>
+      <description>ArrayList继承体系 implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable 你会发现既然ArrayList继承了AbstractList（它implement List接口），为啥后面还加了个implement List&amp;lt;E&amp;gt;，网上给出的解释是：
+ implement List&amp;lt;E&amp;gt; 是可以省略的，只是为了直观显示ArrayList实现了List接口，因为AbstractList只是为了减少实现List接口的代码。
+ RandomAccess、Cloneable、Serializable，可随机读写、可克隆、可序列化。
+Field private static final int DEFAULT_CAPACITY = 10默认容量10
+private static final Object[] EMPTY_ELEMENTDATA = {} 共享的空数组
+ private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {} 共享的空数组
+transient Object[] elementData ArrayList元素存放的数据结构-数组
+你会注意到EMPTY_ELEMENTDATA和DEFAULTCAPACITY_EMPTY_ELEMENTDATA只是两个名字不通的空数组，为啥会需要两个呢？
+观察构造器public ArrayList(int initialCapacity)指定容量为0的话，ArrayList会使用EMPTY_ELEMENTDATA，
+而无参构造器则会使用DEFAULTCAPACITY_EMPTY_ELEMENTDATA
+这两个有什么不通呢？答案是容量增长方式不一样
+private static int calculateCapacity(Object[] elementData, int minCapacity) { if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) { return Math.max(DEFAULT_CAPACITY, minCapacity); } return minCapacity; } 可以看到第二个默认容量是10，而第一个是0，表现为：</description>
     </item>
     
     
