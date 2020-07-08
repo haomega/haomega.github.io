@@ -10,7 +10,7 @@ Collection：是一组数据的集合
 * List 列表 （包含重复、有序)
 * Quene 队列 （先进后出）
 
-![Colection体系](/static/collections.jpg)
+![Colection体系](/collections.jpg)
 
 ## Collection接口
 定义了基本的集合方法
@@ -53,7 +53,7 @@ Collection：是一组数据的集合
 
 # Map体系
 键值对映射，不属于Collection
-![Map体系](/static/Map.png)
+![Map体系](/Map.png)
 
 ## Map接口
 定义了键值对操作的方法，内部还包含了Entry接口
