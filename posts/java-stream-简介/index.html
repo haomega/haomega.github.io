@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/posts/index.xml" title="阿豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -267,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>Posts</title>
+    <title>Java Stream 简介</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">阿豪</a></h2>
@@ -278,65 +277,47 @@ main#content pre {
         </ul>
     </nav>
 </header>
-<main id="content"><h3>Posts</h3>
-<ul id="posts">
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-stream-%E7%AE%80%E4%BB%8B/">Java Stream 简介<small><time>Jul 7, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-lambda-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">Java Lambda 函数式编程<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-%E6%B3%9B%E5%9E%8B%E7%AE%80%E4%BB%8B/">Java 泛型简介<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">Collection体系常用类的数据结构<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/arraylist%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B8%8E%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">ArrayList源码阅读与扩容机制<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Java Stream 简介</h1><time>July 7, 2020</time></header><h2 id="jdk18-stream-is-comming">JDK1.8 Stream is comming!</h2>
+<p>JDK1.8引入了一个新的功能，Stream流操作，通过将Collection、数组等转换成stream，通过stream进行筛选、转换等操作，简直不要太爽。</p>
+<p>Stream流操作，主要用于数据处理方面，以前十几行能实现的功能，使用Stream往往只需要一行，Cool！</p>
+<h2 id="使用strema">使用Strema</h2>
+<p>流的处理包括两个部分:
+* 一系列的中间操作，比如：过滤、转换等
+* 终结操作，将经过一系列中间操作的流进行收集，比如：计算个数、收集为Set/List、分组等等。</p>
+<p>注意：一个流在执行终结操作后就会被关闭，是不能够复用的。</p>
+<h3 id="生成一个stream">生成一个Stream</h3>
+<ol>
+<li>Collection类，使用Collection.stream()方法。</li>
+<li>数组：Arrays.steam(int[] arr)</li>
+<li></li>
+</ol>
+<ul>
+<li>Stream.of(T &hellip;)通过给定的元素生成，</li>
+<li>Stream.generate(Supplier T)通过给定的函数接口生成,</li>
+<li>Stream.empty()空流，</li>
+<li>Strema.concat(Stream&lt;? extends T&gt; a, Stream&lt;? extends T&gt; b)合并两个流。</li>
 </ul>
+<p>除了常规的对象流之外，还有IntStream、LongStream、DoubleStream</p>
+<h3 id="中间操作">中间操作</h3>
+<ul>
+<li>筛选：filter、limit、skip</li>
+<li>映射：map、flatMap</li>
+<li>排序：sorted</li>
+</ul>
+<h3 id="终结操作">终结操作</h3>
+<ul>
+<li>查找与匹配：anyMatch、allMatch、findFirst、findAny</li>
+<li>归约：reduce</li>
+<li><strong>收集</strong> ：collect(Collector)</li>
+</ul>
+<blockquote>
+<p>collect 是一个非常有用的终端操作，它可以将流中的元素转变成另外一个不同的对象，例如一个List，Set或Map。collect 接受入参为Collector（收集器），它由四个不同的操作组成：供应器（supplier）、累加器（accumulator）、组合器（combiner）和终止器（finisher）。
+这些都是个啥？别慌，看上去非常复杂的样子，但好在大多数情况下，您并不需要自己去实现收集器。因为 Java 8通过Collectors类内置了各种常用的收集器，你直接拿来用就行了。</p>
+</blockquote>
+</article>
 
         </main><footer id="footer">
     

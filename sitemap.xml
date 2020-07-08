@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://haomega.github.io/posts/java-lambda-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2020-07-03T15:32:15+08:00</lastmod>
+    <loc>http://haomega.github.io/posts/java-stream-%E7%AE%80%E4%BB%8B/</loc>
+    <lastmod>2020-07-07T15:08:32+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://haomega.github.io/posts/</loc>
-    <lastmod>2020-07-03T15:32:15+08:00</lastmod>
+    <lastmod>2020-07-07T15:08:32+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://haomega.github.io/</loc>
+    <lastmod>2020-07-07T15:08:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://haomega.github.io/posts/java-lambda-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2020-07-03T15:32:15+08:00</lastmod>
   </url>
   
