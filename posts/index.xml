@@ -6,9 +6,27 @@
     <description>Recent content in Posts on 阿豪</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Thu, 09 Jul 2020 21:41:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2020 22:54:49 +0800</lastBuildDate>
     
 	<atom:link href="http://haomega.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>URL 浅析</title>
+      <link>http://haomega.github.io/posts/url-%E6%B5%85%E6%9E%90/</link>
+      <pubDate>Thu, 09 Jul 2020 22:54:49 +0800</pubDate>
+      
+      <guid>http://haomega.github.io/posts/url-%E6%B5%85%E6%9E%90/</guid>
+      <description>URL 组成部分 URL全称为统一资源定位符，组成部分如图所示：
+IP地址 和 Ping IP地址是一串32位的数字，当设备连接网络时，会被分配一个IP地址，用作标识，通过IP地址设备之间可以互相通信。
+Ping 是从‘乒’ 音译而来，当我们Ping一个地址时，我们期待回应一个‘乓’，用来测试一个IP地址是否能正常访问。
+域名 IP地址太难记了，我们需要一个容易记的东西，于是有了域名；
+当我们通过域名访问一个网站时，域名会由DNS转换成对应的IP，一个域名可能会匹配多个IP地址。
+DNS Domain Name Service 域名映射服务，通过DNS可以将域名映射到IP地址。
+命令 nslookup nslookup baidu.com
+用来查询域名服务（DNS）以获取域名或IP地址映射或其他DNS记录。</description>
+    </item>
     
     
     
