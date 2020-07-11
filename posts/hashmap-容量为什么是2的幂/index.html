@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/tags/index.xml" title="阿豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -267,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>Tags</title>
+    <title>HashMap 容量为什么是2的幂</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">阿豪</a></h2>
@@ -278,80 +277,24 @@ main#content pre {
         </ul>
     </nav>
 </header>
-<main id="content"><h3>Posts</h3>
-<ul id="posts">
-
-    <li>
-        <a href="http://haomega.github.io/posts/hashmap-%E5%AE%B9%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF2%E7%9A%84%E5%B9%82/">HashMap 容量为什么是2的幂<small><time>Jul 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/url-%E6%B5%85%E6%9E%90/">URL 浅析<small><time>Jul 9, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/html-%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML 起手与常用标签<small><time>Jul 9, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-stream-%E7%AE%80%E4%BB%8B/">Java Stream 简介<small><time>Jul 7, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-lambda-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">Java Lambda 函数式编程<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-%E6%B3%9B%E5%9E%8B%E7%AE%80%E4%BB%8B/">Java 泛型简介<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">Collection体系常用类的数据结构<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/arraylist%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B8%8E%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">ArrayList源码阅读与扩容机制<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
-</ul>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>HashMap 容量为什么是2的幂</h1><time>July 11, 2020</time></header><h2 id="hashmap总桶的容量">HashMap总桶的容量</h2>
+<p>在初始化HashMap时，桶的容量为2的幂；</p>
+<p>当HashMap桶的容量不够进行扩容时，桶的容量也是2的幂。</p>
+<h2 id="为什么会这样呢">为什么会这样呢？</h2>
+<p>当我们put一个值到HashMap时，会有如下步骤：</p>
+<ol>
+<li>计算key的hashcode；</li>
+<li>依据key的hashcode决定存储位置，会对hashcode取余；</li>
+<li>将key-value放入桶。</li>
+</ol>
+<p>在进行第2步时，HashMap不是使用<code>%</code>进行取余，而是<code>index = (n - 1) &amp; hash</code></p>
+<p>可以这样理解：</p>
+<p>当n为2的幂时，比如n=8，二进制表示为<code>1000</code>，所以（n-1）的二进制为<code>0111</code>，进行&amp;操作时，能快速的丢弃除后三位的所有1
+这样就不用取余计算了，我们知道取余计算是乘法运算，与位运算相比，位运算更加快速。</p>
+</article>
 
         </main><footer id="footer">
     
