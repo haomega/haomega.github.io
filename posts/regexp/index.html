@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.70.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/index.xml" title="阿豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -268,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>阿豪</title>
+    <title>Regexp</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">阿豪</a></h2>
@@ -280,85 +278,160 @@ main#content pre {
     </nav>
 </header>
 <main id="content">
-<h3>Posts</h3>
-<ul id="posts">
-
-    <li>
-        <a href="http://haomega.github.io/posts/regexp/">Regexp<small><time>Jul 15, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hashmap-%E5%AE%B9%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF2%E7%9A%84%E5%B9%82/">HashMap 容量为什么是2的幂<small><time>Jul 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/url-%E6%B5%85%E6%9E%90/">URL 浅析<small><time>Jul 9, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/html-%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML 起手与常用标签<small><time>Jul 9, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-stream-%E7%AE%80%E4%BB%8B/">Java Stream 简介<small><time>Jul 7, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-lambda-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">Java Lambda 函数式编程<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-%E6%B3%9B%E5%9E%8B%E7%AE%80%E4%BB%8B/">Java 泛型简介<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">Collection体系常用类的数据结构<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/arraylist%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B8%8E%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">ArrayList源码阅读与扩容机制<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
-</ul>
+<article>
+    <header id="post-header">
+        <h1>Regexp</h1><time>July 15, 2020</time></header><h1 id="什么是正则">什么是正则？</h1>
+<p>通过一系列鬼畜的操作我们对字符串进行匹配、查询、提取等操作。</p>
+<h2 id="常用元字符">常用元字符</h2>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>开始位置</td>
+</tr>
+<tr>
+<td>$</td>
+<td>结束位置</td>
+</tr>
+<tr>
+<td>.</td>
+<td>单个任意字符（不⼀定包含换⾏符）</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>单个“word”字符 字⺟/数字/下划线/汉字</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>单个空⽩字符（\n\r\t）</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>单个数字字符</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>单词的开始或结束</td>
+</tr>
+</tbody>
+</table>
+<h2 id="重复">重复</h2>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>0次或多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1次或多次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>0次或1次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>n次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>&gt;=n次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>n到m次</td>
+</tr>
+</tbody>
+</table>
+<h2 id="选择">选择</h2>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[aeiou]</td>
+<td>单个的a/e/i/o/u字符之⼀</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>单个数字字符</td>
+</tr>
+<tr>
+<td>[A-Z]</td>
+<td>单个⼤写字⺟</td>
+</tr>
+<tr>
+<td>[A-Z0-9_]</td>
+<td>⼤写字⺟或者数字或者下划线</td>
+</tr>
+<tr>
+<td>Hi</td>
+<td>hi</td>
+</tr>
+</tbody>
+</table>
+<h2 id="反义">反义</h2>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[^aeiou]</td>
+<td>单个的除a/e/i/o/u之外的字符</td>
+</tr>
+<tr>
+<td>[^A]</td>
+<td>单个⾮x字符</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>单个⾮\w（字⺟/数字/下划线/汉字）</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>单个⾮\s（空⽩）</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>单个⾮\d（数字）字符</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>⾮开头/结束位置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="分组">分组</h2>
+<p>在正则表达式中使用<code>(...内容)</code>可以表示一个分组；<code>(?:)</code>:不捕获和分配编号，括号只⽤于分组或标记优先级</p>
+<p>分组用来划分界限和提取指定组的内容；</p>
+<p>编号从看到的第一个<code>(</code>从1自增，0表示整个内容。</p>
+<h2 id="贪婪非贪婪">贪婪/非贪婪</h2>
+<p>* :重复0次或多次</p>
+<p>+ :重复一次或多次</p>
+<p>这两个表示重复的字符，默认会是贪婪模式，会匹配尽可能多的字符；</p>
+<p>分贪婪模式需要在后面加<code>?</code>，例如<code>.*?</code></p>
+</article>
 
         </main><footer id="footer">
     
