@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.74.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="shortcut icon" href="http://haomega.github.io/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" href="http://haomega.github.io/index.xml" title="村上小豪">
     <style type="text/css" media="screen">
         *, *:before, *:after {
     box-sizing: border-box;
@@ -268,7 +266,7 @@ main#content pre {
 
     </style>
 
-    <title>村上小豪</title>
+    <title>为你的项目配置代码风格审查CheckStyle与CI测试</title>
 </head>
 <body><header id="banner">
     <h2><a href="http://haomega.github.io/">村上小豪</a></h2>
@@ -280,100 +278,67 @@ main#content pre {
     </nav>
 </header>
 <main id="content">
-<h3>Posts</h3>
-<ul id="posts">
+<article>
+    <header id="post-header">
+        <h1>为你的项目配置代码风格审查CheckStyle与CI测试</h1><time>August 3, 2020</time></header><h2 id="why">why？</h2>
+<p>多人协作项目中，每个人的代码风格习惯可能不一样，而且有一些写法容易造成歧义，
+比如<code>if</code>后不加花括号。</p>
+<p>使用代码风格审查工具可以帮助我们强制要求代码的写法。</p>
+<h2 id="使用maven-checkstyle插件">使用Maven CheckStyle插件</h2>
+<p><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/">Maven CheckStyle plugin</a></p>
+<p><a href="https://checkstyle.sourceforge.io/sun_style.html">审查规则xml 配置例子</a></p>
+<h3 id="pomxml-中配置插件">POM.xml 中配置插件</h3>
+<pre><code>&lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.1.1&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;configLocation&gt;${basedir}/.circleci/checkstyle.xml&lt;/configLocation&gt;
+                    &lt;includeTestSourceDirectory&gt;true&lt;/includeTestSourceDirectory&gt;
+                    &lt;enableRulesSummary&gt;false&lt;/enableRulesSummary&gt;
+                &lt;/configuration&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;verify&lt;/id&gt;
+                        &lt;phase&gt;verify&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;check&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+</code></pre><p><code>configLocation</code>配置文件路径，可以参考上面的例子。</p>
+<p><code>&lt;executions</code> 绑定plugin执行的Maven默认生命周期的阶段，这里是<code>verify</code></p>
+<h2 id="使用circlecihttpss0circleci0comicopysitedocs20about-circleci">使用<a href="https://s0circleci0com.icopy.site/docs/2.0/about-circleci/">CircleCI</a></h2>
+<p>Circle是一个免费的CI工具。</p>
+<p>Maven的代码审查插件，只是与Maven的生命周期进行绑定，我们还需要保证，在项目组成员提交代码（PR）时，对代码风格进行审查（也就是运行 CheckStyle plugin），通过检查才能合并。</p>
+<h3 id="在circleci上进行配置">在CircleCI上进行配置</h3>
+<p>登录CircleCI后，可以与Github上的项目进行关联，对我们将要测试的项目生成测试脚本，
+会有一个yml配置文件，配置到我们的项目中，类似这样：</p>
+<pre><code>version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/openjdk:8u212-jdk-stretch
+    steps:
+      - checkout
+      - restore_cache:
+          key: haomega-{{ checksum &quot;pom.xml&quot; }}
+      - run:
+          name: Run Maven verify
+          command: mvn clean verify
+      - save_cache: # saves the project dependencies
+          paths:
+            - ~/.m2
+          key: haomega-{{ checksum &quot;pom.xml&quot; }}
+workflows:
+  version: 2
+  default:
+    jobs:
+      - test
 
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">unit test/integration test mokito 单元测试与集成测试<small><time>Aug 6, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E4%B8%BA%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%AE%A1%E6%9F%A5ci/">为你的项目配置代码风格审查CheckStyle与CI测试<small><time>Aug 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">Docker 基本概念<small><time>Jul 27, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/regexp/">Regexp 正则表达式<small><time>Jul 15, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hashmap-%E5%AE%B9%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF2%E7%9A%84%E5%B9%82/">HashMap 容量为什么是2的幂<small><time>Jul 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/url-%E6%B5%85%E6%9E%90/">URL 浅析<small><time>Jul 9, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/html-%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML 起手与常用标签<small><time>Jul 9, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-stream-%E7%AE%80%E4%BB%8B/">Java Stream 简介<small><time>Jul 7, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-lambda-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">Java Lambda 函数式编程<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-%E6%B3%9B%E5%9E%8B%E7%AE%80%E4%BB%8B/">Java 泛型简介<small><time>Jul 3, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">Collection体系常用类的数据结构<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/arraylist%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B8%8E%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/">ArrayList源码阅读与扩容机制<small><time>Jun 17, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-thread-%E7%BA%BF%E7%A8%8B%E7%AE%80%E5%8D%95%E6%A6%82%E8%A6%81/">Java Thread 线程简单概要<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java-exception%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0/">Java Exception简要概述<small><time>May 28, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/collection-%E4%BD%93%E7%B3%BB%E5%92%8C%E5%B8%B8%E7%94%A8%E7%B1%BB/">Collection 体系和常用类<small><time>May 12, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/java%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8Emaven/">Java的包管理与Maven<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/hugo-and-githubpages-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hugo and GithubPages 博客搭建<small><time>May 11, 2020</time></small>
-        </a>
-    </li>
-
-    <li>
-        <a href="http://haomega.github.io/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉<small><time>May 8, 2020</time></small>
-        </a>
-    </li>
-
-</ul>
+</code></pre><p>当有PR时，会自动运行测试脚本。</p>
+</article>
 
         </main><footer id="footer">
     
